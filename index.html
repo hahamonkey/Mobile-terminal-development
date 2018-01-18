@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title></title>
+    <link rel="stylesheet" href="jquery.mobile-1.4.5.min.css"/>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+    </style>
+</head>
+<body>
+<script src="jquery-1.12.4.min.js"></script>
+<script src="jquery.mobile-1.4.5.min.js"></script>
+<script>
+    var num;
+    for(var i=0;i<24;i++){
+        $("body").append('<img src="images/thumbs/'+(i+1)+'.jpg">');
+        $('img').css({'width':'25%','float':'left'});
+    }
+    $('img').on('tap',function(){
+        num=$(this).index('img');
+        $('body').append('<div></div>');
+        $('div').css({
+            'width':'100%',
+            'height':'100%',
+            'background':"#000 url(images/"+(num+1)+".jpg) center center no-repeat",
+            'background-size':'100% auto',
+            'position':'absolute',
+            'left':'0',
+            'right':'0'});
+
+    });
+    $('body').on('swipeleft','div',function(){
+        num++;
+        if(num==24)
+            num=0;
+        $('div').css({
+            'background-Image':"url(images/"+(num+1)+".jpg)"
+        })
+    })
+    $('body').on('swiperight','div',function(){
+        num--;
+        if(num==-1)
+            num=23;
+        $('div').css({
+            'background-Image':"url(images/"+(num+1)+".jpg)"
+        })
+    })
+
+</script>
+</body>
+</html>
